@@ -35,8 +35,13 @@ class Tester
     /**
      * @param callable(TestContext):void $testFunc
      */
-    public function RegisterTest(string $testName, callable $testFunc): void
+    public function RegisterTest(callable $testFunc): void
     {
+        if (!is_array($testFunc)) {
+            throw new \InvalidArgumentException("RegisterTest only supports static method of a class");
+        }
+
+        $testName = $testFunc[1];
         $this->testNames[] = $testName;
         $this->tests[$testName] = $testFunc;
     }

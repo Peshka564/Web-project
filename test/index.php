@@ -7,11 +7,11 @@ use Tester\Tester;
 $tester = new Tester();
 
 // register tests here
-$tester->RegisterTest('TestWithFail', [DemoTest::class, 'TestWithFail']);
-$tester->RegisterTest('TestWithMultipleErrors', [DemoTest::class, 'TestWithMultipleErrors']);
-$tester->RegisterTest('TestWithMultipleLogs', [DemoTest::class, 'TestWithMultipleLogs']);
-$tester->RegisterTest('TestWithMultipleErrorsWithFail', [DemoTest::class, 'TestWithMultipleErrorsWithFail']);
-$tester->RegisterTest('TestWithUnhandleException', [DemoTest::class, 'TestWithUnhandleException']);
+$tester->RegisterTest([DemoTest::class, 'TestWithFail']);
+$tester->RegisterTest([DemoTest::class, 'TestWithMultipleErrors']);
+$tester->RegisterTest([DemoTest::class, 'TestWithMultipleLogs']);
+$tester->RegisterTest([DemoTest::class, 'TestWithMultipleErrorsWithFail']);
+$tester->RegisterTest([DemoTest::class, 'TestWithUnhandleException']);
 
 $tester->RunTests();
 
