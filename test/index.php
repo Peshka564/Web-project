@@ -1,0 +1,48 @@
+<?php
+require_once __DIR__ . '/./autoload.php';
+
+use DemoTest\DemoTest;
+use Tester\Tester;
+
+$tester = new Tester();
+
+// register tests here
+$tester->RegisterTest('TestWithFail', [DemoTest::class, 'TestWithFail']);
+$tester->RegisterTest('TestWithMultipleErrors', [DemoTest::class, 'TestWithMultipleErrors']);
+$tester->RegisterTest('TestWithMultipleLogs', [DemoTest::class, 'TestWithMultipleLogs']);
+$tester->RegisterTest('TestWithMultipleErrorsWithFail', [DemoTest::class, 'TestWithMultipleErrorsWithFail']);
+$tester->RegisterTest('TestWithUnhandleException', [DemoTest::class, 'TestWithUnhandleException']);
+
+$tester->RunTests();
+
+$results = $tester->getResults();
+
+foreach ($results as $testName => $result) {
+    echo '===' .$testName . '==='. PHP_EOL;
+
+    echo 'Status: ';
+    if ($result->ok()) {
+        echo 'PASSED';
+    } else {
+        echo 'FAILED';
+    }
+    echo PHP_EOL;
+
+    if ($result->hasLogs()) {
+        foreach ($result->getLogs() as $log) {
+            echo 'Log: ' . $log . PHP_EOL;
+        }
+    }
+
+    if ($result->hasErrors()) {
+        foreach ($result->getErrors() as $error) {
+            echo 'Error: ' . $error . PHP_EOL;
+        }
+    }
+
+    if ($result->hasUnhandledException()) {
+        echo 'Unhandled exception: ' . $result->getUnhandledException()->getMessage() . PHP_EOL;
+    }
+
+    echo PHP_EOL;
+}

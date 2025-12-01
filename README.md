@@ -12,3 +12,9 @@ docker cp php_web:/usr/local/etc/php/php.ini-development ./config/php.ini
 docker cp php_web:/etc/apache2/sites-available/000-default.conf ./config/apache.conf
 ```
 
+## Run Unit tests locally
+
+```bash
+php test/index.php
+```
+
