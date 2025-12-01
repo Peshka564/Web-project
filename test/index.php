@@ -12,6 +12,7 @@ $tester->RegisterTest([DemoTest::class, 'TestWithMultipleErrors']);
 $tester->RegisterTest([DemoTest::class, 'TestWithMultipleLogs']);
 $tester->RegisterTest([DemoTest::class, 'TestWithMultipleErrorsWithFail']);
 $tester->RegisterTest([DemoTest::class, 'TestWithUnhandleException']);
+// to here
 
 $tester->RunTests();
 
@@ -22,9 +23,9 @@ foreach ($results as $testName => $result) {
 
     echo 'Status: ';
     if ($result->ok()) {
-        echo 'PASSED';
+        echo "\033[32mPASSED\033[0m";
     } else {
-        echo 'FAILED';
+        echo "\033[31mFAILED\033[0m";
     }
     echo PHP_EOL;
 
