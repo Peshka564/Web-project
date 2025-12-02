@@ -17,4 +17,3 @@ docker cp php_web:/etc/apache2/sites-available/000-default.conf ./config/apache.
 ```bash
 php test/index.php
 ```
-
