@@ -3,9 +3,9 @@
 namespace JsonParser;
 
 use Tester\TestContext;
-use JsonParser\Lexer;
-use JsonParser\Token;
-use JsonParser\TokenType;
+use JsonParser\Lexer\Lexer;
+use JsonParser\Token\Token;
+use JsonParser\Token\TokenType;
 
 class LexerTest
 {

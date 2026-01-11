@@ -3,6 +3,7 @@ require_once __DIR__ . '/./autoload.php';
 
 use DemoTest\DemoTest;
 use JsonParser\LexerTest;
+use JsonParser\ParserTest;
 use Tester\Tester;
 
 $tester = new Tester();
@@ -39,6 +40,7 @@ $tester->RegisterTest([LexerTest::class, 'testLexerNumberWithInvalidNoDigitAfter
 $tester->RegisterTest([LexerTest::class, 'testLexerNumberWithInvalidNoDigitAfterExp1']);
 $tester->RegisterTest([LexerTest::class, 'testLexerNumberWithInvalidNoDigitAfterExp2']);
 
+
 // lexer keyword tests
 $tester->RegisterTest([LexerTest::class, 'testLexerKeywordNull']);
 $tester->RegisterTest([LexerTest::class, 'testLexerKeywordTrue']);
@@ -47,6 +49,12 @@ $tester->RegisterTest([LexerTest::class, 'testLexerKeywordFalse']);
 // entire lexer
 $tester->RegisterTest([LexerTest::class, 'testLexerEntireValid1']);
 
+// parser tests
+$tester->RegisterTest([ParserTest::class, 'testNullNode']);
+$tester->RegisterTest([ParserTest::class, 'testBoolArrayNode']);
+$tester->RegisterTest([ParserTest::class, 'testNumberNode']);
+$tester->RegisterTest([ParserTest::class, 'testStringNode']);
+$tester->RegisterTest([ParserTest::class, 'testObjectNode']);
 // to here
 
 $tester->RunTests();

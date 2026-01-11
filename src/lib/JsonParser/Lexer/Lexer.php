@@ -1,6 +1,9 @@
 <?php
 
-namespace JsonParser;
+namespace JsonParser\Lexer;
+
+use JsonParser\Token\Token;
+use JsonParser\Token\TokenType;
 
 class Lexer
 {

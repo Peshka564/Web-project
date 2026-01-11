@@ -1,6 +1,6 @@
 <?php
 
-namespace JsonParser;
+namespace JsonParser\Token;
 
 class Token
 {
