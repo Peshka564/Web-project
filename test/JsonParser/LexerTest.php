@@ -11,9 +11,9 @@ class LexerTest
 {
     public static function testWhiteSpace(TestContext $ctx)
     {
-        $lexer = new Lexer("  \t  \t\r\n   \n    ", 4);
+        $lexer = new Lexer("  \t  \t\n   \n    ", 4);
         $expected = [
-            new Token(TokenType::HorizontalWhiteSpace, "  \t  \t\r", 1, 1),
+            new Token(TokenType::HorizontalWhiteSpace, "  \t  \t", 1, 1),
             new Token(TokenType::VerticalWhiteSpace, "\n", 1, 13),
             new Token(TokenType::HorizontalWhiteSpace, '   ', 2, 1),
             new Token(TokenType::VerticalWhiteSpace, "\n", 2, 4),

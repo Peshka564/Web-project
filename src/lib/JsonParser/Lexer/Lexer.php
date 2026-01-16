@@ -20,8 +20,9 @@ class Lexer
 
     public function __construct(string $input, int $tabColms)
     {
-        $this->input = $input;
-        $this->inputLen = strlen($input);
+        // Sanitize the input so it works on both Windows and Linux
+        $this->input = str_replace("\r\n", "\n", $input);
+        $this->inputLen = strlen($this->input);
         $this->ind = 0;
         $this->row = 1;
         $this->col = 1;
