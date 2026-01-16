@@ -28,8 +28,8 @@ class LexerTest
             $expectedToken = $expected[$ind];
 
             if ($token->getType() !== $expectedToken->getType()) {
-                $expectedTokenString = $expectedToken->getType()->asString();
-                $tokenTypeString = $token->getType()->asString();
+                $expectedTokenString = $expectedToken->getType()->toString();
+                $tokenTypeString = $token->getType()->toString();
                 $ctx->fail("expected token type $expectedTokenString, but got $tokenTypeString");
             }
             if ($token->getLiteral() !== $expectedToken->getLiteral()) {

@@ -39,6 +39,6 @@ class Token
 
     public function __toString(): string
     {
-        return "{ type=" . $this->type->asString() . ", literal=" . $this->literal . ", row=" . $this->row . " col=" . $this->col . " }";
+        return "{ type=" . $this->type->toString() . ", literal=" . $this->literal . ", row=" . $this->row . " col=" . $this->col . " }";
     }
 }
