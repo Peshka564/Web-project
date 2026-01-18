@@ -18,6 +18,7 @@ class JsonEmitterTest
             return;
         }
         $emitter = new JsonEmitter(new JsonEmitterConfig("  ", "\n"));
+        $expectedResult = str_replace("\r\n", "\n", $expectedResult);
         $emitRes = $emitter->emit($parseRes->ok());
         if ($emitRes !== $expectedResult) {
             $ctx->fail("Expected:\n{$expectedResult}\nReceived:\n{$emitRes}");
@@ -52,35 +53,35 @@ class JsonEmitterTest
     public static function testJsonEmitterKeyValueInput(TestContext $ctx){
         $input = '{"a":1,"b":"x"}';
         $expectedOutput =
-            '{' . "\n" .
-            '  "a": 1,' . "\n" .
-            '  "b": "x"' . "\n".
-            '}';
+'{
+  "a": 1,
+  "b": "x"
+}';
         JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterArrayInput(TestContext $ctx){
         $input = '{"arr":[1,"x",null]}';
         $expectedOutput =
-            '{' . "\n" .
-            '  "arr": [' . "\n" .
-            '    1,' . "\n" .
-            '    "x",' . "\n" .
-            '    null' . "\n" .
-            '  ]' . "\n" .
-            '}';
+'{
+  "arr": [
+    1,
+    "x",
+    null
+  ]
+}';
         JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterNestedObjectInput(TestContext $ctx){
         $input = '{"a":{"b":1,"c":"x"}}';
         $expectedOutput =
-            '{' . "\n" .
-            '  "a": {' . "\n" .
-            '    "b": 1,' . "\n" .
-            '    "c": "x"' . "\n" .
-            '  }' . "\n" .
-            '}';
+'{
+  "a": {
+    "b": 1,
+    "c": "x"
+  }
+}';
         JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
