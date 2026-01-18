@@ -58,7 +58,7 @@ class JsonEmitter implements Emitter
         $indention = $this->calculateIndentation($indentationLevel);
         $innerIndention = $this->calculateIndentation($indentationLevel + 1);
 
-        $result = "{\n";
+        $result = "{" . $this->config->newLineString;
 
         $count = count($children);
         foreach ($children as $index => $child) {
@@ -86,7 +86,7 @@ class JsonEmitter implements Emitter
         $indention = $this->calculateIndentation($indentationLevel);
         $innerIndention = $this->calculateIndentation($indentationLevel + 1);
 
-        $result = "[\n";
+        $result = "[" . $this->config->newLineString;
 
         $count = count($children);
         foreach ($children as $index => $child) {
