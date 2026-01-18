@@ -1,20 +1,23 @@
 <?php
 
-namespace Emitters;
+namespace Emitters\JsonEmitter;
 
+use function count;
 use Exception;
+use Emitters\Emitter;
 use JsonParser\AST\ArrayNode;
 use JsonParser\AST\ASTNode;
 use JsonParser\AST\ASTNodeType;
 use JsonParser\AST\KeyValueNode;
 use JsonParser\AST\ObjectNode;
 
-class JsonEmitter
+class JsonEmitter implements Emitter
 {
-    private int $indentationSize;
-
-    public function __construct(int $indentationSize = 2){
-        $this->indentationSize = $indentationSize;
+    public function __construct(private ?JsonEmitterConfig $config = null)
+    {
+        if ($this->config === null) {
+            $this->config = new JsonEmitterConfig();
+        }
     }
 
     public function emit(ASTNode $node): string
@@ -65,7 +68,7 @@ class JsonEmitter
             if ($index < $count - 1) {
                 $result .= ",";
             }
-            $result .= "\n";
+            $result .= $this->config->newLineString;
         }
 
         $result .= $indention . "}";
@@ -93,7 +96,7 @@ class JsonEmitter
             if ($index < $count - 1) {
                 $result .= ",";
             }
-            $result .= "\n";
+            $result .= $this->config->newLineString;
         }
 
         $result .= $indention . "]";
@@ -106,12 +109,12 @@ class JsonEmitter
         $key = $this->emitNode($node->getKeyNode(), $indentionLevel);
         $value = $this->emitNode($node->getValueNode(), $indentionLevel);
 
-        return $key . ": " . $value;
+        return "{$key}: {$value}";
     }
 
     private function calculateIndentation(int $indentationLevel): string
     {
-        return str_repeat(" ", $indentationLevel * $this->indentationSize);
+        return str_repeat($this->config->indentationString, $indentationLevel);
     }
 
 }

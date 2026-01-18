@@ -2,107 +2,65 @@
 
 namespace Emitters;
 
+use Emitters\JsonEmitter\JsonEmitter;
+use Emitters\JsonEmitter\JsonEmitterConfig;
 use Tester\TestContext;
 use JsonParser\Lexer\Lexer;
 use JsonParser\Parser\Parser;
-use Emitters\JsonEmitter;
 
-class JsonEmitterTest{
+class JsonEmitterTest
+{
+    private static function runTest(TestContext $ctx, string $jsonInput, string $expectedResult)
+    {
+        $parseRes = (new Parser(new Lexer($jsonInput, 2)))->parse();
+        if ($parseRes->isErr()) {
+            $ctx->error("Invalid test input! Fix the test.");
+            return;
+        }
+        $emitter = new JsonEmitter(new JsonEmitterConfig("  ", "\n"));
+        $emitRes = $emitter->emit($parseRes->ok());
+        if ($emitRes !== $expectedResult) {
+            $ctx->fail("Expected:\n{$expectedResult}\nReceived:\n{$emitRes}");
+            return;
+        }
+    }
+
     public static function testJsonEmitterNullInput(TestContext $ctx){
         $input = 'null';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        //no parsing error handling, technically node could be handwritten AST root, same goes for all tests
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
         $expectedOutput = 'null';
-
-        if($output !== $expectedOutput){
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterBoolInput(TestContext $ctx){
         $input = 'true';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
         $expectedOutput = 'true';
-
-        if($output !== $expectedOutput){
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterNumberInput(TestContext $ctx){
         $input = '132.43';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
         $expectedOutput = '132.43';
-
-        if($output !== $expectedOutput){
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterStringInput(TestContext $ctx){
         $input = '"Just a random string"';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
         $expectedOutput = '"Just a random string"';
-
-        if($output !== $expectedOutput){
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterKeyValueInput(TestContext $ctx){
         $input = '{"a":1,"b":"x"}';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
         $expectedOutput =
             '{' . "\n" .
             '  "a": 1,' . "\n" .
             '  "b": "x"' . "\n".
             '}';
-
-        if($output !== $expectedOutput){
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterArrayInput(TestContext $ctx){
         $input = '{"arr":[1,"x",null]}';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
         $expectedOutput =
             '{' . "\n" .
             '  "arr": [' . "\n" .
@@ -111,22 +69,11 @@ class JsonEmitterTest{
             '    null' . "\n" .
             '  ]' . "\n" .
             '}';
-
-        if ($output !== $expectedOutput) {
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
     public static function testJsonEmitterNestedObjectInput(TestContext $ctx){
         $input = '{"a":{"b":1,"c":"x"}}';
-        $lexer = new Lexer($input, 0);
-        $parser = new Parser($lexer);
-        $result = $parser->parse();
-
-        $JsonEmitter = new JsonEmitter();
-        $node = $result->ok();
-        $output = $JsonEmitter->emit($node);
-
         $expectedOutput =
             '{' . "\n" .
             '  "a": {' . "\n" .
@@ -134,10 +81,7 @@ class JsonEmitterTest{
             '    "c": "x"' . "\n" .
             '  }' . "\n" .
             '}';
-
-        if ($output !== $expectedOutput) {
-            $ctx->fail("Expected json $expectedOutput but got $output");
-        }
+        JsonEmitterTest::runTest($ctx, $input, $expectedOutput);
     }
 
 }

@@ -10,7 +10,6 @@ use JsonParser\Parser\Parser;
 
 class YamlEmitterTest
 {
-
     private static function runTest(TestContext $ctx, string $jsonInput, string $expectedResult)
     {
         $parseRes = (new Parser(new Lexer($jsonInput, 2)))->parse();
