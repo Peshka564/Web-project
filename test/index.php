@@ -4,6 +4,7 @@ require_once __DIR__ . '/./autoload.php';
 use DemoTest\DemoTest;
 use JsonParser\LexerTest;
 use JsonParser\ParserTest;
+use Emitters\JsonEmitterTest;
 use Tester\Tester;
 
 $tester = new Tester();
@@ -55,6 +56,15 @@ $tester->RegisterTest([ParserTest::class, 'testBoolArrayNode']);
 $tester->RegisterTest([ParserTest::class, 'testNumberNode']);
 $tester->RegisterTest([ParserTest::class, 'testStringNode']);
 $tester->RegisterTest([ParserTest::class, 'testObjectNode']);
+
+// jsonEmitter tests
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNullInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterBoolInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNumberInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterStringInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterKeyValueInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterArrayInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNestedObjectInput']);
 // to here
 
 $tester->RunTests();
