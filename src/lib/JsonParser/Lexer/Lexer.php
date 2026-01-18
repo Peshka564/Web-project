@@ -20,8 +20,9 @@ class Lexer
 
     public function __construct(string $input, int $tabColms)
     {
-        $this->input = $input;
-        $this->inputLen = strlen($input);
+        // Sanitize the input so it works on both Windows and Linux
+        $this->input = str_replace("\r\n", "\n", $input);
+        $this->inputLen = strlen($this->input);
         $this->ind = 0;
         $this->row = 1;
         $this->col = 1;
@@ -44,22 +45,20 @@ class Lexer
 
     private function getWhiteSpaceToken(): Token
     {
-        $currChar = $this->input[$this->ind++];
+        $currChar = $this->input[$this->ind];
         if ($currChar === "\n") {
             $token = new Token(TokenType::VerticalWhiteSpace, "\n", $this->row, $this->col);
             $this->col = 1;
             $this->row++;
+            $this->ind++;
             return $token;
-        } else {
-            $this->ind--;
         }
 
         $colmIncr = 0;
         $literal = '';
         while (self::isWhiteSpace()) {
-            $currChar = $this->input[$this->ind++];
+            $currChar = $this->input[$this->ind];
             if ($currChar === "\n") {
-                $this->ind--;
                 break;
             } else if ($currChar === ' ') {
                 $colmIncr++;
@@ -67,6 +66,7 @@ class Lexer
                 $colmIncr += $this->tabColms;
             }
             $literal .= $currChar;
+            $this->ind++;
         }
 
 
@@ -218,7 +218,7 @@ class Lexer
         return '0' <= $ch[0] && $ch[0] <= '9';
     }
 
-    private function tryGetWholoNumberPart(int $originalInd): ?string
+    private function tryGetWholeNumberPart(int $originalInd): ?string
     {
         $literal = '';
 
@@ -235,6 +235,7 @@ class Lexer
 
         $literal .= $currChar;
 
+        // If the first digit is 0, we cannot have more digits in the whole part
         if ($currChar !== '0') {
             while (!self::isEOF() && self::isDigit($this->input[$this->ind])) {
                 $currChar = $this->input[$this->ind++];
@@ -314,7 +315,7 @@ class Lexer
     private function tryGetNumberLiteralToken(): ?Token
     {
         $originalInd = $this->ind;
-        $wholePart = self::tryGetWholoNumberPart($originalInd);
+        $wholePart = self::tryGetWholeNumberPart($originalInd);
         if ($wholePart === null) {
             return null;
         }

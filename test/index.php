@@ -1,11 +1,11 @@
 <?php
 require_once __DIR__ . '/./autoload.php';
 
-use DemoTest\DemoTest;
+use Tester\Tester;
 use JsonParser\LexerTest;
 use JsonParser\ParserTest;
 use Emitters\JsonEmitterTest;
-use Tester\Tester;
+use Emitters\YamlEmitterTest;
 
 $tester = new Tester();
 
@@ -65,7 +65,15 @@ $tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterStringInput']);
 $tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterKeyValueInput']);
 $tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterArrayInput']);
 $tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNestedObjectInput']);
-// to here
+
+// yaml emitter tests
+$tester->RegisterTest([YamlEmitterTest::class, 'testSingleString']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testSingleBool']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testSingleNum']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testSimpleArray']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testEmptyArray']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures1']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures2']);
 
 $tester->RunTests();
 
