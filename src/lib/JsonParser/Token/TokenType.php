@@ -24,7 +24,7 @@ enum TokenType
     case NumberLiteral;
     case StringLiteral;
 
-    public function asString(): string
+    public function toString(): string
     {
         switch ($this) {
             case TokenType::Invalid:

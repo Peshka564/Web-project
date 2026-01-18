@@ -31,7 +31,7 @@ class ParserTest
          */
         $node = $result->ok();
         if ($node->getType() !== ASTNodeType::Null) {
-            $nodeType = $node->getType()->asString();
+            $nodeType = $node->getType()->toString();
             $ctx->fail("expected null node, but got $nodeType");
         }
 
@@ -56,7 +56,7 @@ class ParserTest
          */
         $node = $result->ok();
         if ($node->getType() !== ASTNodeType::Array) {
-            $nodeType = $node->getType()->asString();
+            $nodeType = $node->getType()->toString();
             $ctx->fail("expected array node, but got $nodeType");
         }
 
@@ -68,7 +68,7 @@ class ParserTest
 
         foreach ($children as $child) {
             if ($child->getType() !== ASTNodeType::Bool) {
-                $nodeType = $child->getType()->asString();
+                $nodeType = $child->getType()->toString();
                 $ctx->fail("expected bool node, but got $nodeType");
             }
         }
@@ -89,7 +89,7 @@ class ParserTest
          */
         $node = $result->ok();
         if ($node->getType() !== ASTNodeType::Number) {
-            $nodeType = $node->getType()->asString();
+            $nodeType = $node->getType()->toString();
             $ctx->fail("expected number node, but got $nodeType");
         }
 
@@ -114,7 +114,7 @@ class ParserTest
          */
         $node = $result->ok();
         if ($node->getType() !== ASTNodeType::String) {
-            $nodeType = $node->getType()->asString();
+            $nodeType = $node->getType()->toString();
             $ctx->fail("expected string node, but got $nodeType");
         }
 
@@ -152,7 +152,7 @@ class ParserTest
          */
         $node = $result->ok();
         if ($node->getType() !== ASTNodeType::Object) {
-            $nodeType = $node->getType()->asString();
+            $nodeType = $node->getType()->toString();
             $ctx->fail("expected object node, but got $nodeType");
         }
 
@@ -176,8 +176,8 @@ class ParserTest
 
             $valueNodeType = $keyValueNode->getValueNode()->getType();
             if ($valueNodeType !== $expectedChildrenValueTypes[$i]) {
-                $valueNodeTypeAsString = $valueNodeType->asString();
-                $expectedValueNodeTypeAsString = $expectedChildrenValueTypes[$i]->asString();
+                $valueNodeTypeAsString = $valueNodeType->toString();
+                $expectedValueNodeTypeAsString = $expectedChildrenValueTypes[$i]->toString();
                 $ctx->fail("for key $keyLiteral: expected type $expectedValueNodeTypeAsString, but got $valueNodeTypeAsString");
             }
         }
@@ -203,8 +203,8 @@ class ParserTest
             $type = $node->getType();
             $literal = $node->getToken()->getLiteral();
             if ($type !== $expectedArrayChildrenTypes[$i]) {
-                $typeAsString = $type->asString();
-                $expectedTypeAsString = $expectedArrayChildrenTypes[$i]->asString();
+                $typeAsString = $type->toString();
+                $expectedTypeAsString = $expectedArrayChildrenTypes[$i]->toString();
                 $ctx->fail("expected type $expectedTypeAsString, but got $typeAsString");
             }
 

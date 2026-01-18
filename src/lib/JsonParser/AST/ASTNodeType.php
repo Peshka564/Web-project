@@ -12,7 +12,7 @@ enum ASTNodeType
     case Array;
     case Object;
 
-    public function asString(): string
+    public function toString(): string
     {
         switch ($this) {
             case ASTNodeType::Null:
