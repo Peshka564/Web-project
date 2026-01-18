@@ -22,12 +22,6 @@ class TomlEmitterTest
         $expectedResult = $expectedResult === null ? $expectedResult : str_replace("\r\n", "\n", $expectedResult);
         $emitRes = $emitter->emit($parseRes->ok());
         if ($emitRes !== $expectedResult) {
-            file_put_contents("toml_emitter_received.txt", $emitRes);
-            file_put_contents("toml_emitter_expected.txt", $expectedResult);
-            $receivedLen = strlen($emitRes);
-            $expectedLen = strlen($expectedResult);
-            print($receivedLen . "\n");
-            print($expectedLen . "\n");
             $ctx->fail("Expected:\n{$expectedResult}\nReceived:\n{$emitRes}");
             return;
         }
