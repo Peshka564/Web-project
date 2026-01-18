@@ -19,10 +19,9 @@ class YamlEmitter
             case ASTNodeType::Bool:
             case ASTNodeType::Null:
             case ASTNodeType::Number:
-                return $node->getToken()->getLiteral();
-            # Assuming no newlines are present in the string for now
+            # Assuming no newlines are present in the string
             case ASTNodeType::String:
-                return "\"{$node->getToken()->getLiteral()}\"";
+                return $node->getToken()->getLiteral();
             default:
                 throw new Exception("Invalid leaf node");
         }
@@ -37,7 +36,7 @@ class YamlEmitter
         return array_map(fn($line) => "\t{$line}", $lines);
     }
 
-    /** @return string[] */
+    /** @return string[] - an array of lines */
     private function emitHelper(ASTNode $node): array
     {
         if ($node->isLeafNode()) {
@@ -52,18 +51,19 @@ class YamlEmitter
                 return ['[]'];
             }
 
-            $arrayElementRows = [];
+            $arrayElementLines = [];
             foreach ($node->getChildren() as $arrayElement) {
-                $arrayElementRows[] = $this->emitHelper($arrayElement);
-            }
-
-            return array_map(function($childrenLines) {
+                $childrenLines = $this->emitHelper($arrayElement);
                 // The first line is not indented and is prefixed with "- "
                 $firstLine = "- " . (count($childrenLines) > 0 ? $childrenLines[0] : '');
                 // Indent the remaining lines
                 $remainingLines = $this->indentLines(array_slice($childrenLines, 1));
-                return [$firstLine, ...$remainingLines];
-            }, $arrayElementRows);
+                $childrenLines = [$firstLine, ...$remainingLines];
+                
+                $arrayElementLines = [...$arrayElementLines, ...$childrenLines];
+            }
+
+            return $arrayElementLines;
         }
         if ($node->getType() === ASTNodeType::Object) {
             if (!($node instanceof ObjectNode)) {
@@ -75,11 +75,12 @@ class YamlEmitter
             }
 
             // Here we just return the rows one after another, no indenting
-            $arrayElementRows = [];
+            $arrayElementLines = [];
             foreach ($node->getChildren() as $arrayElement) {
-                $arrayElementRows[] = $this->emitHelper($arrayElement);
+                $childrenLines = $this->emitHelper($arrayElement);
+                $arrayElementLines = [...$arrayElementLines, ...$childrenLines];
             }
-            return $arrayElementRows;
+            return $arrayElementLines;
         }
         if ($node->getType() === ASTNodeType::KeyValue) {
             if (!($node instanceof KeyValueNode)) {
@@ -87,10 +88,15 @@ class YamlEmitter
             }
             
             $valueLines = $this->emitHelper($node->getValueNode());
-            $keyLiteral = $node->getKeyNode()->getToken()->getLiteral();
+            // We need to also remove quotes from key
+            $keyLiteral = str_replace('"', "", $node->getKeyNode()->getToken()->getLiteral());
 
-            $keyLine = $keyLiteral . ": " . (count($valueLines) > 0 ? $valueLines[0] : '');
-            $indentedValueLines = $this->indentLines(array_slice($valueLines, 1));
+            // We keep the key and value on the same line only if the value is a leaf node
+            if($node->getValueNode()->isLeafNode()) {
+                return ["{$keyLiteral}: {$valueLines[0]}"];
+            }
+            $keyLine = "{$keyLiteral}:";
+            $indentedValueLines = $this->indentLines($valueLines);
             return [$keyLine, ...$indentedValueLines];
         }
         throw new Exception("Invalid AST node type");
