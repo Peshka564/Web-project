@@ -1,18 +1,26 @@
 <?php
 
-namespace Emitters;
+namespace Emitters\YamlEmitter;
 
+use function array_slice, count;
 use Exception;
+use Emitters\Emitter;
 use JsonParser\AST\ArrayNode;
 use JsonParser\AST\ASTNode;
 use JsonParser\AST\ASTNodeType;
 use JsonParser\AST\KeyValueNode;
 use JsonParser\AST\LeafNode;
-use function array_slice, count;
 use JsonParser\AST\ObjectNode;
 
-class YamlEmitter
+class YamlEmitter implements Emitter
 {
+    public function __construct(private ?YamlEmitterConfig $config = null)
+    {
+        if ($this->config === null) {
+            $this->config = new YamlEmitterConfig();
+        }
+    }
+
     private function emitLeaf(LeafNode $node): string
     {
         switch ($node->getType()) {
@@ -33,7 +41,7 @@ class YamlEmitter
      */
     private function indentLines(array $lines): array
     {
-        return array_map(fn($line) => "\t{$line}", $lines);
+        return array_map(fn($line) => $this->config->indentationString . $line, $lines);
     }
 
     /** @return string[] - an array of lines */
@@ -104,6 +112,6 @@ class YamlEmitter
     public function emit(ASTNode $root): string
     {
         $yamlRows = $this->emitHelper($root);
-        return implode("\n", $yamlRows);
+        return implode($this->config->newLineString, $yamlRows);
     }
 }
