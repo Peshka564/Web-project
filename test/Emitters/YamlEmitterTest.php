@@ -19,6 +19,7 @@ class YamlEmitterTest
             return;
         }
         $emitter = new YamlEmitter(new YamlEmitterConfig(" ", "\n"));
+        $expectedResult = str_replace("\r\n", "\n", $expectedResult);
         $emitRes = $emitter->emit($parseRes->ok());
         if ($emitRes !== $expectedResult) {
             $ctx->fail("Expected:\n{$expectedResult}\nReceived:\n{$emitRes}");
