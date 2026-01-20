@@ -349,3 +349,47 @@ html, body{
     border-radius:3px;
     resize:none;
 }
+
+/* History page styles */
+
+.history-section {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.history-item {
+    background: white;
+    border:2px solid gray;
+    border-radius: 3px;
+    padding: 1.5rem;
+    transition: box-shadow 0.3s;
+}
+
+.history-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.history-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.history-item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(35, 53, 73);
+}
+
+.history-item-date {
+    color: rgb(88,88,88);
+    font-size: 0.9rem;
+}
+
+.history-item-description {
+    color: rgba(66,66,66);
+    font-size: 0.95rem;
+}
