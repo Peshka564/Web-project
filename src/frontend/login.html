@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONConverter</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <main class="login-container">
+        <section class="login-card">
+            <h1>JSON Converter</h1>
+            <form class="login-form" id="login-form">
+                <div class="login-form-container">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                </div>
+                <div class="login-form-container">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                </div>
+                <button type="submit" class="login-button">Login</button>
+            </form>
+            <p class="register-link">Dont have an account? <a href="#" id="register-link">Register</a></p>
+        </section>
+    </main>
+
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-register">&times;</button>
+            <h2>Register</h2>
+            <form class="register-form">
+                <div class="register-form-container">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" placeholder="Username" required>
+                </div>
+                <div class="register-form-container">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" required>
+                </div>
+                <div class="register-form-container">
+                    <label for="register-password-confirmation">Confirm password</label>
+                    <input type="password" id="register-password-confirmation" name="password-confirmation">
+                </div>
+                <button type="submit" class="register-button">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="javascript/registerModalHandler.js"></script>
+    <script src="javascript/loginHandler.js"></script>
+
+</body>
+</html>

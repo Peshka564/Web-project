@@ -1,0 +1,351 @@
+/*Base styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color:rgb(36, 36, 36);
+    width: 100%;
+    height: 100%;
+}
+
+/* Login styles */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:bisque;
+    height: 100vh;
+}
+
+.login-card {
+    background:white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.login-card h1{
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+}
+
+.login-form-container label{
+    font-weight: 600;
+}
+
+.login-form-container input{
+    padding:0.75rem;
+    border:2px solid gray;
+    border-radius:3px;
+    transition: border-color 0.2s;
+    font-size: 1rem;
+}
+
+.login-form-container input:focus{
+    outline: none;
+    border-color:rgb(43, 42, 42);
+}
+
+.login-button{
+    margin-top : 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color:bisque;
+    border:2px solid gray;
+    border-radius:3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover{
+    background-color: rgb(230, 189, 137);
+}
+
+.register-link{
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.register-link a{
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-link a:hover{
+    text-decoration: underline;
+}
+
+/* Modal styles */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active{
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius:10px;
+    width:90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.modal-content h2{
+    margin-bottom:1.5rem;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color:rgb(36, 36, 36);
+}
+
+/* Register modal styles */
+
+.register-form, .save-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.register-form-container, .save-form-container{
+    display: flex;
+    flex-direction: column;
+    gap:0.3rem;
+}
+
+.register-form-container label, .save-form-container label{
+    font-weight: 600;
+}
+
+.register-form-container input, .save-form-container input{
+    padding:0.75rem;
+    border:2px solid gray;
+    border-radius:3px;
+    transition: border-color 0.2s;
+    font-size: 1rem;
+}
+
+.register-form-container input:focus, .save-form-container input:focus{
+    outline: none;
+    border-color:rgb(43, 42, 42);
+}
+
+.register-button{
+    margin-top : 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color:bisque;
+    border:2px solid gray;
+    border-radius:3px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.register-button:hover{
+    background-color: rgb(230, 189, 137);
+}
+
+/* Main application styles */
+
+.flex-body {
+    display: flex;
+}
+
+.sidebar{
+    width:120px;
+    min-height: 100vh;
+    background: rgb(40, 84, 114);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+}
+
+.nav-item {
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+    background-color: rgb(40, 62, 93);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    background: bisque;
+    padding: 1rem 2rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.top-bar h1 {
+    font-size: 1.5rem;
+    color: rgb(33, 71, 99);
+}
+
+/* Converter page styles */
+
+.converter{
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.input-area, .s-expr-area, .output-area {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-area label,.s-expr-area label ,.output-area label {
+    font-weight: 600;
+    color: rgb(55,55,55);
+}
+
+.input-area textarea, .s-expr-area textarea,.output-area textarea{
+    min-height:300px;
+    padding: 1rem;
+    border: 2px solid lightslategray;
+    border-radius:3px;
+    font-family:'Courier New', Courier, monospace;
+    font-size:0.95rem;
+    resize:none;
+}
+
+.converter-settings{
+    display:flex;
+    flex-direction: column;
+}
+
+#convert-button{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color:rgb(106, 168, 255);
+    border:2px solid lightslategray;
+    color: white;
+    border-radius:3px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#convert-button:hover{
+    background-color: rgb(39, 108, 173);
+}
+
+#save-output-button{
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color:rgb(24, 201, 110);
+    border:2px solid gray;
+    color: white;
+    border-radius:3px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#save-output-button:hover{
+    background-color: rgb(3, 138, 34);
+}
+
+#output-language{
+    padding: 0.1rem;
+    border: 2px solid lightslategray;
+    border-radius:3px;
+    font-weight: 600;
+    color: rgb(55,55,55);
+}
+
+/* Save modal styles */
+
+.save-button{
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color:rgb(24, 201, 110);
+    border:2px solid gray;
+    color: white;
+    border-radius:3px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-button:hover{
+    background-color: rgb(3, 138, 34);
+}
+#save-desription{
+    min-height: 200px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border: 2px solid lightslategray;
+    border-radius:3px;
+    resize:none;
+}
