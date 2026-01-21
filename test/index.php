@@ -6,6 +6,7 @@ use JsonParser\LexerTest;
 use JsonParser\ParserTest;
 use Emitters\JsonEmitterTest;
 use Emitters\YamlEmitterTest;
+use Emitters\TomlEmitterTest;
 
 $tester = new Tester();
 
@@ -74,6 +75,11 @@ $tester->RegisterTest([YamlEmitterTest::class, 'testSimpleArray']);
 $tester->RegisterTest([YamlEmitterTest::class, 'testEmptyArray']);
 $tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures1']);
 $tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures2']);
+
+// toml emitter tests
+$tester->RegisterTest([TomlEmitterTest::class, 'testNonObjectRoot']);
+$tester->RegisterTest([TomlEmitterTest::class, 'testSimpleTable']);
+$tester->RegisterTest([TomlEmitterTest::class, 'testComplexTable']);
 
 $tester->RunTests();
 
