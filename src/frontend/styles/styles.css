@@ -19,7 +19,7 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:bisque;
+    background-color:rgb(10, 86, 129);
     height: 100vh;
 }
 
@@ -68,16 +68,18 @@ html, body{
 .login-button{
     margin-top : 8px;
     padding: 12px 24px;
-    background-color:bisque;
-    border:2px solid gray;
+    background-color: rgb(82, 165, 185);
+    border:2px solid rgb(90, 90, 90);
+    color:white;
     border-radius:3px;
+    font-weight: 600;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .login-button:hover{
-    background-color: rgb(230, 189, 137);
+    background-color: rgb(69, 143, 161);
 }
 
 .register-link{
@@ -162,7 +164,7 @@ dialog::backdrop {
 
 .register-form-container input, .save-form-container input{
     padding:12px;
-    border:2px solid gray;
+    border:2px solid rgb(85, 85, 85);
     border-radius:3px;
     transition: border-color 0.2s;
     font-size: 16px;
@@ -176,16 +178,18 @@ dialog::backdrop {
 .register-button{
     margin-top : 8px;
     padding: 12px 24px;
-    background-color:bisque;
-    border:2px solid gray;
+    background-color: rgb(82, 165, 185);
+    border:2px solid rgb(90, 90, 90);
+    color:white;
     border-radius:3px;
+    font-weight: 600;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .register-button:hover{
-    background-color: rgb(230, 189, 137);
+    background-color: rgb(69, 143, 161);
 }
 
 /* Main application styles */
@@ -195,12 +199,13 @@ dialog::backdrop {
 }
 
 .sidebar{
-    width:120px;
+    min-width:140px;
+    width:140px;
     min-height: 100vh;
-    background: rgb(40, 84, 114);
+    background-color:rgb(10, 86, 129);
     display: flex;
     flex-direction: column;
-    padding: 16px 0px;
+    padding: 0px 0px;
 }
 
 .nav-item {
@@ -211,11 +216,22 @@ dialog::backdrop {
     font-size: 18px;
     font-weight: 600;
     transition: background-color 0.3s;
-    border-left: 3px solid transparent;
+    border-bottom: 0.4px solid rgb(145, 145, 145);
 }
 
 .nav-item:hover {
     background-color: rgb(40, 62, 93);
+}
+
+.avatar-placeholder{
+    height: 64px;
+}
+
+.avatar{
+    padding-top:8px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .main-content {
@@ -225,14 +241,14 @@ dialog::backdrop {
 }
 
 .top-bar {
-    background: bisque;
+    background-color:rgb(10, 86, 129);
     padding: 16px 32px;
     border-bottom: 2px solid #e0e0e0;
 }
 
 .top-bar h1 {
     font-size: 24px;
-    color: rgb(33, 71, 99);
+    color: rgb(255, 255, 255);
 }
 
 /* Converter page styles */
@@ -274,8 +290,8 @@ dialog::backdrop {
     margin-top: 8px;
     margin-bottom: 8px;
     padding: 12px 24px;
-    background-color:rgb(106, 168, 255);
-    border:2px solid lightslategray;
+    background-color: rgb(82, 165, 185);
+    border:2px solid rgb(90, 90, 90);
     color: white;
     border-radius:3px;
     font-weight: 600;
@@ -285,14 +301,14 @@ dialog::backdrop {
 }
 
 #convert-button:hover{
-    background-color: rgb(39, 108, 173);
+    background-color: rgb(69, 143, 161);
 }
 
 #save-output-button{
     margin-top: 8px;
     padding: 12px 24px;
-    background-color:rgb(24, 201, 110);
-    border:2px solid gray;
+    background-color:rgb(23, 168, 137);
+    border:2px solid rgb(90, 90, 90);
     color: white;
     border-radius:3px;
     font-weight: 600;
@@ -302,7 +318,7 @@ dialog::backdrop {
 }
 
 #save-output-button:hover{
-    background-color: rgb(3, 138, 34);
+    background-color:rgb(14, 153, 123);
 }
 
 #output-language{
@@ -318,8 +334,8 @@ dialog::backdrop {
 .save-button{
     margin-top: 8px;
     padding: 12px 24px;
-    background-color:rgb(24, 201, 110);
-    border:2px solid gray;
+    background-color:rgb(23, 168, 137);
+    border:2px solid rgb(90, 90, 90);
     color: white;
     border-radius:3px;
     font-weight: 600;
@@ -329,7 +345,7 @@ dialog::backdrop {
 }
 
 .save-button:hover{
-    background-color: rgb(3, 138, 34);
+    background-color:rgb(14, 153, 123);
 }
 #save-desription{
     min-height: 200px;
@@ -383,4 +399,10 @@ dialog::backdrop {
 .history-item-description {
     color: rgba(66,66,66);
     font-size: 16px;
+}
+
+/* Error styles */
+.error{
+    font-size:15px;
+    color:red;
 }

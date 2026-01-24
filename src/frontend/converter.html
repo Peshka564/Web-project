@@ -8,7 +8,7 @@
 </head>
     <body class="flex-body">
         <nav class="sidebar">
-            <p>Placeholder Avatar</p>
+            <div class="avatar-placeholder"><img src="img/avatar.png" class="avatar"></div> 
             <a href="history.html" class="nav-item">History</a>
             <a href="login.html" class="nav-item">Logout</a>
         </nav>
@@ -58,10 +58,11 @@
         <div class="modal-content">
             <button class="modal-close" id="close-save">&times;</button>
             <h2>Save Output</h2>
-            <form class="save-form">
+            <form class="save-form" id="save-form">
                 <div class="save-form-container">
                     <label for="save-title">Title</label>
-                    <input type="text" id="save-title" placeholder="Title" required>
+                    <input type="text" id="save-title" placeholder="Title">
+                    <p class="error" id="save-title-error"></p>
                 </div>
                 <div class="save-form-container">
                     <label for="save-description">Description (optional)</label>
