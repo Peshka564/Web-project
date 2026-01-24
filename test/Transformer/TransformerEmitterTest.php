@@ -8,7 +8,7 @@ use JsonParser\AST\NumberNode;
 use JsonParser\Lexer\Lexer;
 use JsonParser\Parser\Parser;
 use Tester\TestContext;
-use Transformer\Emitter;
+use Transformer\Emitter\Emitter;
 
 class TransformerEmitterTest {
     public static function testEmitter(TestContext $ctx) {

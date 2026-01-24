@@ -3,7 +3,7 @@
 namespace Transformer;
 
 use Tester\TestContext;
-use Transformer\Parser;
+use Transformer\Parser\Parser;
 
 class TransformerParserTest
 {

@@ -9,9 +9,10 @@
 - array
 - object
 
-## Literals
+## Core
 
 - literal
+- pipe
 
 ## Instructions
 
@@ -63,4 +64,6 @@ comparison
 
 ### Instruction for **object**
 
-- TODO
+- keyval
+- setval
+- merge

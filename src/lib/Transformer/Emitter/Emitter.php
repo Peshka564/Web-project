@@ -1,6 +1,6 @@
 <?php
 
-namespace Transformer;
+namespace Transformer\Emitter;
 
 use JsonParser\AST\ArrayNode;
 use JsonParser\AST\ASTNode;
