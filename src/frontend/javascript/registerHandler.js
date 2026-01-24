@@ -5,5 +5,5 @@ registerForm.addEventListener('submit', (event) => {
     event.preventDefault();
     //TODO password === conf password
     //TODO registration success
-    registerModal.classList.remove('active');
+    registerModal.close();
 });

@@ -8,7 +8,6 @@
 
 html, body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
     color:rgb(36, 36, 36);
     width: 100%;
     height: 100%;
@@ -26,27 +25,27 @@ html, body{
 
 .login-card {
     background:white;
-    padding: 2.5rem;
+    padding: 40px;
     border-radius: 10px;
     width: 400px;
 }
 
 .login-card h1{
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
+    margin-bottom: 32px;
+    font-size: 30px;
 }
 
 .login-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 24px;
 }
 
 .login-form-container{
     display: flex;
     flex-direction: column;
-    gap:0.3rem;
+    gap:5px;
 }
 
 .login-form-container label{
@@ -54,11 +53,11 @@ html, body{
 }
 
 .login-form-container input{
-    padding:0.75rem;
+    padding:12px;
     border:2px solid gray;
     border-radius:3px;
     transition: border-color 0.2s;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 .login-form-container input:focus{
@@ -67,12 +66,12 @@ html, body{
 }
 
 .login-button{
-    margin-top : 0.5rem;
-    padding: 0.75rem 1.5rem;
+    margin-top : 8px;
+    padding: 12px 24px;
     background-color:bisque;
     border:2px solid gray;
     border-radius:3px;
-    font-size: 1rem;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -83,7 +82,7 @@ html, body{
 
 .register-link{
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 16px;
 }
 
 .register-link a{
@@ -97,44 +96,36 @@ html, body{
 
 /* Modal styles */
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+dialog {
+    border: none;
+    border-radius: 10px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
 }
 
-.modal.active{
-    display: flex;
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
     background-color: white;
-    padding: 2rem;
-    border-radius:10px;
-    width:90%;
-    max-width: 500px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    padding: 32px;
     position: relative;
 }
 
 .modal-content h2{
-    margin-bottom:1.5rem;
+    margin-bottom:24px;
 }
 
 .modal-close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 16px;
+    right: 16px;
     background: none;
     border: none;
-    font-size: 2rem;
+    font-size: 32px;
     color: #999;
     cursor: pointer;
     line-height: 1;
@@ -156,13 +147,13 @@ html, body{
 .register-form, .save-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 24px;
 }
 
 .register-form-container, .save-form-container{
     display: flex;
     flex-direction: column;
-    gap:0.3rem;
+    gap:5px;
 }
 
 .register-form-container label, .save-form-container label{
@@ -170,11 +161,11 @@ html, body{
 }
 
 .register-form-container input, .save-form-container input{
-    padding:0.75rem;
+    padding:12px;
     border:2px solid gray;
     border-radius:3px;
     transition: border-color 0.2s;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 .register-form-container input:focus, .save-form-container input:focus{
@@ -183,12 +174,12 @@ html, body{
 }
 
 .register-button{
-    margin-top : 0.5rem;
-    padding: 0.75rem 1.5rem;
+    margin-top : 8px;
+    padding: 12px 24px;
     background-color:bisque;
     border:2px solid gray;
     border-radius:3px;
-    font-size: 1rem;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -209,15 +200,15 @@ html, body{
     background: rgb(40, 84, 114);
     display: flex;
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 16px 0px;
 }
 
 .nav-item {
-    padding: 1rem;
+    padding: 16px;
     color: white;
     text-decoration: none;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 18px;
     font-weight: 600;
     transition: background-color 0.3s;
     border-left: 3px solid transparent;
@@ -235,28 +226,28 @@ html, body{
 
 .top-bar {
     background: bisque;
-    padding: 1rem 2rem;
+    padding: 16px 32px;
     border-bottom: 2px solid #e0e0e0;
 }
 
 .top-bar h1 {
-    font-size: 1.5rem;
+    font-size: 24px;
     color: rgb(33, 71, 99);
 }
 
 /* Converter page styles */
 
 .converter{
-    padding: 2rem;
+    padding: 32px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem;
+    gap: 24px;
 }
 
 .input-area, .s-expr-area, .output-area {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
 }
 
 .input-area label,.s-expr-area label ,.output-area label {
@@ -266,11 +257,11 @@ html, body{
 
 .input-area textarea, .s-expr-area textarea,.output-area textarea{
     min-height:300px;
-    padding: 1rem;
+    padding: 16px;
     border: 2px solid lightslategray;
     border-radius:3px;
     font-family:'Courier New', Courier, monospace;
-    font-size:0.95rem;
+    font-size:16px;
     resize:none;
 }
 
@@ -280,15 +271,15 @@ html, body{
 }
 
 #convert-button{
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 12px 24px;
     background-color:rgb(106, 168, 255);
     border:2px solid lightslategray;
     color: white;
     border-radius:3px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -298,14 +289,14 @@ html, body{
 }
 
 #save-output-button{
-    margin-top: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    margin-top: 8px;
+    padding: 12px 24px;
     background-color:rgb(24, 201, 110);
     border:2px solid gray;
     color: white;
     border-radius:3px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -315,7 +306,7 @@ html, body{
 }
 
 #output-language{
-    padding: 0.1rem;
+    padding: 2px;
     border: 2px solid lightslategray;
     border-radius:3px;
     font-weight: 600;
@@ -325,14 +316,14 @@ html, body{
 /* Save modal styles */
 
 .save-button{
-    margin-top: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    margin-top: 8px;
+    padding: 12px 24px;
     background-color:rgb(24, 201, 110);
     border:2px solid gray;
     color: white;
     border-radius:3px;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -342,8 +333,8 @@ html, body{
 }
 #save-desription{
     min-height: 200px;
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 16px;
+    font-size: 16px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border: 2px solid lightslategray;
     border-radius:3px;
@@ -353,17 +344,17 @@ html, body{
 /* History page styles */
 
 .history-section {
-    padding: 2rem;
+    padding: 32px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
 }
 
 .history-item {
     background: white;
     border:2px solid gray;
     border-radius: 3px;
-    padding: 1.5rem;
+    padding: 24px;
     transition: box-shadow 0.3s;
 }
 
@@ -375,21 +366,21 @@ html, body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 8px;
 }
 
 .history-item-name {
-    font-size: 1.1rem;
+    font-size: 18px;
     font-weight: 600;
     color: rgb(35, 53, 73);
 }
 
 .history-item-date {
     color: rgb(88,88,88);
-    font-size: 0.9rem;
+    font-size: 14px;
 }
 
 .history-item-description {
     color: rgba(66,66,66);
-    font-size: 0.95rem;
+    font-size: 16px;
 }

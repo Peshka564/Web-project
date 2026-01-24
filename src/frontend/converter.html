@@ -42,8 +42,8 @@
                 </div>
 
                 <div class="s-expr-area">
-                    <label for="s-expr-output">S-Expression</label>
-                    <textarea id="s-expr-output" readonly></textarea>
+                    <label for="s-expr-input">S-Expression</label>
+                    <textarea id="s-expr-input" placeholder="Enter your S-Expression here..." ></textarea>
                 </div>
 
                 <div class="output-area">
@@ -54,7 +54,7 @@
             </section>
         </main>
 
-    <div id="save-modal" class="modal">
+    <dialog id="save-modal" class="modal">
         <div class="modal-content">
             <button class="modal-close" id="close-save">&times;</button>
             <h2>Save Output</h2>
@@ -70,7 +70,7 @@
                 <button type="submit" class="save-button">Save</button>
             </form>
         </div>
-    </div>
+    </dialog>
 
     <script src="javascript/saveModalHandler.js"></script>
 

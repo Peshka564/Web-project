@@ -4,14 +4,14 @@ const closeRegister = document.getElementById('close-register');
 
 registerLink.addEventListener('click', (event) => {
     event.preventDefault();
-    registerModal.classList.add('active');
+    registerModal.showModal();
 });
 
 closeRegister.addEventListener('click', () => {
-    registerModal.classList.remove('active');
+    registerModal.close();
 });
 registerModal.addEventListener('click', (e) => {
     if (e.target === registerModal) {
-        registerModal.classList.remove('active');
+        registerModal.close();
     }
 });

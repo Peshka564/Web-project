@@ -4,14 +4,14 @@ const closeSave = document.getElementById('close-save');
 
 saveOutputButton.addEventListener('click', (event) => {
     event.preventDefault();
-    saveModal.classList.add('active');
+    saveModal.showModal();
 });
 
 closeSave.addEventListener('click', () => {
-    saveModal.classList.remove('active');
+    saveModal.close();
 });
 saveModal.addEventListener('click', (e) => {
     if (e.target === saveModal) {
-        saveModal.classList.remove('active');
+        saveModal.close();
     }
 });
