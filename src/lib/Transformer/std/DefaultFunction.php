@@ -14,14 +14,16 @@ class DefaultFunction implements TransformerFunction {
     }
 
     public function eval(array $args, ASTNode $node, TransformerContext $ctx): ASTNode {
-        if (count($args) !== 1) {
-            throw new EvaluationException("Default function needs only 1 argument");
+        if (count($args) !== 2) {
+            throw new EvaluationException("Default function needs 2 arguments");
         }
 
-        if ($node->getType() === ASTNodeType::Null) {
-            return Evaluator::eval($args[0], $node, $ctx);
+        
+        $subNode = Evaluator::eval($args[0], $node, $ctx);
+        if ($subNode->getType() === ASTNodeType::Null) {
+            return Evaluator::eval($args[1], $node, $ctx);
         } else {
-            return $node;
+            return $subNode;
         }
     }
 }
