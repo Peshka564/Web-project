@@ -66,7 +66,7 @@
                 </div>
                 <div class="save-form-container">
                     <label for="save-description">Description (optional)</label>
-                    <textarea id="save-desription"></textarea>
+                    <textarea id="save-description"></textarea>
                 </div>
                 <button type="submit" class="save-button">Save</button>
             </form>
