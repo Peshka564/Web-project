@@ -347,7 +347,7 @@ dialog::backdrop {
 .save-button:hover{
     background-color:rgb(14, 153, 123);
 }
-#save-desription{
+#save-description{
     min-height: 200px;
     padding: 16px;
     font-size: 16px;

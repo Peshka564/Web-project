@@ -39,8 +39,7 @@ class Parser
         }
         $this->skipWhiteSpaceTokens();
         if ($this->currToken->getType() !== TokenType::EOF) {
-            // TODO add parsing error for expecting EOF
-            return new ParserResult(new ParserError());
+            return new ParserResult(new ParserError("Expected EOF", $this->currToken));
         }
         return $result;
     }
@@ -63,8 +62,12 @@ class Parser
             case TokenType::OpeningCurlyBracket:
                 return $this->parseObjectNode();
             default:
-                // TODO add parsing errors for different tokens like EOF
-                return new ParserResult(new ParserError());
+                return new ParserResult(
+                    new ParserError(
+                        "Expected null, true, false, number, string, \"[\" or \"{\"",
+                        $this->currToken
+                    )
+                );
         }
     }
 
@@ -122,8 +125,7 @@ class Parser
                 $this->currToken->getType() !== TokenType::Comma
                 && $this->currToken->getType() !== TokenType::ClosingSquareBracket
             ) {
-                // TODO add parsing error 
-                return new ParserResult(new ParserError());
+                return new ParserResult(new ParserError("Expected \",\" or \"]\"", $this->currToken));
             }
 
             if ($this->currToken->getType() !== TokenType::ClosingSquareBracket) {
@@ -139,21 +141,18 @@ class Parser
     {
         $this->skipWhiteSpaceTokens();
         if ($this->currToken->getType() !== TokenType::StringLiteral) {
-            // TODO add parsing error
-            return new ParserResult(new ParserError());
+            return new ParserResult(new ParserError("Keys must be string and surounded by quotes"));
         }
         $key = $this->parseStringNode();
 
         $this->skipWhiteSpaceTokens();
         if ($this->currToken->getType() !== TokenType::Colon) {
-            // TODO add parsing error
-            return new ParserResult(new ParserError());
+            return new ParserResult(new ParserError("Expected \":\"", $this->currToken));
         }
 
         $this->loadToken();
         $valueResult = $this->parseJson();
         if ($valueResult->isErr()) {
-            // Maybe error wrap
             return $valueResult;
         }
 
@@ -176,8 +175,8 @@ class Parser
             $keyValue = $result->ok();
             $keyLiteral = $keyValue->getKeyNode()->getToken()->getLiteral();
             if (array_key_exists($keyLiteral, $keys)) {
-                // TODO add parsing error when duplicate keys
-                return new ParserResult(new ParserError());
+                $keyToken = $keyValue->getKeyNode()->getToken();
+                return new ParserResult(new ParserError("Duplicate key $keyLiteral", $keyToken));
             }
 
             $children[] = $keyValue;
@@ -188,8 +187,7 @@ class Parser
                 $this->currToken->getType() !== TokenType::Comma
                 && $this->currToken->getType() !== TokenType::ClosingCurlyBracket
             ) {
-                // TODO add parsing error 
-                return new ParserResult(new ParserError());
+                return new ParserResult(new ParserError("Expected \",\" or \"}\"", $this->currToken));
             }
 
             if ($this->currToken->getType() !== TokenType::ClosingCurlyBracket) {

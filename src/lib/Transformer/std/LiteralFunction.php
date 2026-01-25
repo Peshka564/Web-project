@@ -24,7 +24,7 @@ class LiteralFunction implements TransformerFunction {
         $parserResult = $parser->parse();
 
         if ($parserResult->isErr()) {
-            throw new EvaluationException("Invalid literal, the literal must be valid json");
+            throw new EvaluationException("Invalid literal, the literal must be valid json: " . $parserResult->err());
         }
 
         return $parserResult->ok();

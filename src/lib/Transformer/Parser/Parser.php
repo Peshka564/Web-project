@@ -109,12 +109,10 @@ class Parser
             } else if ($currChar === ".") {
                 break;
             } else {
-                // TODO return result not exception
                 throw new ParsingException("emitter must start with .");
             }
         }
         if ($this->expr[$this->exprLeftInd] !== ".") {
-            // TODO return result not exception
             throw new ParsingException("emitter must start with .");
         }
 
@@ -128,10 +126,8 @@ class Parser
             $nextChar = $this->exprLeftInd < $this->exprRightInd ? $this->expr[$this->exprLeftInd + 1] : "\0";
             if ($currChar === "\"") {
                 if (!$inString && !$dot) {
-                    // TODO return result not exception
                     throw new ParsingException("before every field must have .");
                 } else if (!$inString && $inNumber) {
-                    // TODO return result not exception
                     throw new ParsingException("cannot start field directly after index");
                 } else if ($inString) {
                     $dot = false;
@@ -152,22 +148,18 @@ class Parser
                 ) {
                     $this->exprLeftInd++;
                 } else if ($currChar === "\\") {
-                    // TODO return result not exception
                     throw new ParsingException("invalid escape");
                 }
             } else if (self::isDigit($currChar)) {
                 if (!$dot) {
-                    // TODO return result not exception
                     throw new ParsingException("before every index must have .");
                 } else if (!$inNumber && $currChar === "0" && self::isDigit($nextChar)) {
-                    // TODO return result not exception
                     throw new ParsingException("index does not support octal");
                 } else if (!$inNumber) {
                     $inNumber = true;
                 }
             } else if ($currChar === ".") {
                 if ($dot && !$inNumber) {
-                    // TODO return result not exception
                     throw new ParsingException("cannot have . one after the other");
                 }
                 $inNumber = false;
@@ -177,7 +169,6 @@ class Parser
                 $inNumber = false;
                 break;
             } else {
-                // TODO return result not exception
                 throw new ParsingException("invalid character");
             }
             $this->exprLeftInd++;
@@ -190,7 +181,6 @@ class Parser
         }
 
         if ($dot && $nummberOfDots !== 1 || $inString) {
-            // TODO return result not exception
             throw new ParsingException("cannot finist on dot or unclosed string");
         }
 
@@ -208,7 +198,6 @@ class Parser
             }
         }
         if ($this->exprLeftInd > $this->exprRightInd) {
-            // TODO return result not exception
             throw new ParsingException("missing function name");
         }
 
@@ -237,7 +226,6 @@ class Parser
             } else if ($currChar === "(") {
                 $arguments[] = self::parseArgument();
             } else {
-                // TODO return result not exception
                 throw new ParsingException("Invalid argument");
             }
         }
@@ -248,7 +236,6 @@ class Parser
     {
         // requires a $this->$expr[$this->$exprLeftInd] === "("
         if ($this->expr[$this->exprLeftInd] !== "(") {
-            // TODO return result not exception
             throw new ParsingException("Argument must start with (");
         }
         $argumentLeftInd = $this->exprLeftInd;
@@ -275,7 +262,6 @@ class Parser
         }
 
         if ($brackets !== 0) {
-            // TODO return result not exception
             throw new ParsingException("Missing closing brackets");
         }
         if ($this->expr[$this->exprLeftInd] === ")") {
