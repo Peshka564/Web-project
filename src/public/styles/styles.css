@@ -206,6 +206,7 @@ dialog::backdrop {
     display: flex;
     flex-direction: column;
     padding: 0px 0px;
+    overflow-y: auto;
 }
 
 .nav-item {
@@ -238,6 +239,7 @@ dialog::backdrop {
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .top-bar {
@@ -290,6 +292,7 @@ dialog::backdrop {
 #convert-button{
     margin-top: 8px;
     margin-bottom: 8px;
+    width:100%;
     padding: 12px 24px;
     background-color: rgb(82, 165, 185);
     border:2px solid rgb(90, 90, 90);
