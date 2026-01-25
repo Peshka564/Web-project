@@ -35,7 +35,7 @@
                     <textarea id="converter-output" readonly></textarea>
                 </div>
 
-                <p class="converter-error"></p>
+                <p class="converter-error" id="converter-error"></p>
                 <div></div>
                 <div></div>
 
