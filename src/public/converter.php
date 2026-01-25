@@ -125,7 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="save-form-container">
                     <label for="save-title">Title</label>
                     <input type="text" id="save-title" placeholder="Title">
-                    <p class="error" id="save-title-error"></p>
                 </div>
                 <div class="save-form-container">
                     <label for="save-description">Description (optional)</label>
