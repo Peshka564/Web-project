@@ -22,24 +22,8 @@
                 <div class="input-area">
                     <label for="converter-input">JSON input</label>
                     <textarea id="converter-input" placeholder="Enter your JSON here..."></textarea>
-                    <div class="converter-settings">
-                        <button id="convert-button">Convert</button>
-                        <div class="output-selector">
-                            <label for="output-language">Convert to:</label>
-                            <select id="output-language">
-                                <option value="FormattedJson">
-                                    Formatted JSON
-                                </option>
-                                <option value="YAML">
-                                    YAML
-                                </option>
-                                <option value="TOML">
-                                    TOML
-                                </option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
+                    
 
                 <div class="s-expr-area">
                     <label for="s-expr-input">S-Expression</label>
@@ -49,8 +33,33 @@
                 <div class="output-area">
                     <label for="converter-output">Output</label>
                     <textarea id="converter-output" readonly></textarea>
-                    <button id="save-output-button">Save</button>
                 </div>
+
+                <p class="converter-error"></p>
+                <div></div>
+                <div></div>
+
+                <button id="convert-button">Convert</button>
+                <div></div>
+                <button id="save-output-button">Save</button>
+
+                <div class="converter-settings">
+                    <div class="output-selector">
+                        <label for="output-language">Convert to:</label>
+                        <select id="output-language">
+                            <option value="FormattedJson">
+                                Formatted JSON
+                            </option>
+                            <option value="YAML">
+                                YAML
+                            </option>
+                            <option value="TOML">
+                                TOML
+                            </option>
+                        </select>
+                     </div>
+                </div>
+                
             </section>
         </main>
 
@@ -62,7 +71,6 @@
                 <div class="save-form-container">
                     <label for="save-title">Title</label>
                     <input type="text" id="save-title" placeholder="Title">
-                    <p class="error" id="save-title-error"></p>
                 </div>
                 <div class="save-form-container">
                     <label for="save-description">Description (optional)</label>

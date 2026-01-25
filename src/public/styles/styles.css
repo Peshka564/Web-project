@@ -256,8 +256,9 @@ dialog::backdrop {
 .converter{
     padding: 32px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto auto auto;
+    column-gap: 24px;
 }
 
 .input-area, .s-expr-area, .output-area {
@@ -306,6 +307,7 @@ dialog::backdrop {
 
 #save-output-button{
     margin-top: 8px;
+    margin-bottom: 8px;
     padding: 12px 24px;
     background-color:rgb(23, 168, 137);
     border:2px solid rgb(90, 90, 90);
@@ -322,11 +324,14 @@ dialog::backdrop {
 }
 
 #output-language{
-    padding: 2px;
-    border: 2px solid lightslategray;
-    border-radius:3px;
+    min-width: 140px;
+    padding: 3px 20px;
+    border: 1px solid lightslategray;
+    border-radius: 6px;
     font-weight: 600;
+    font-size: 14px;
     color: rgb(55,55,55);
+    background-color: white;
 }
 
 /* Save modal styles */
@@ -403,6 +408,12 @@ dialog::backdrop {
 
 /* Error styles */
 .error{
+    font-size:15px;
+    color:red;
+}
+
+.converter-error{
+    margin-top:8px;
     font-size:15px;
     color:red;
 }
