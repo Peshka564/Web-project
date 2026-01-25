@@ -1,10 +1,12 @@
 <?php
 require_once __DIR__ . '/./autoload.php';
 
-use DemoTest\DemoTest;
+use Tester\Tester;
 use JsonParser\LexerTest;
 use JsonParser\ParserTest;
-use Tester\Tester;
+use Emitters\JsonEmitterTest;
+use Emitters\YamlEmitterTest;
+use Emitters\TomlEmitterTest;
 
 $tester = new Tester();
 
@@ -55,7 +57,29 @@ $tester->RegisterTest([ParserTest::class, 'testBoolArrayNode']);
 $tester->RegisterTest([ParserTest::class, 'testNumberNode']);
 $tester->RegisterTest([ParserTest::class, 'testStringNode']);
 $tester->RegisterTest([ParserTest::class, 'testObjectNode']);
-// to here
+
+// jsonEmitter tests
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNullInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterBoolInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNumberInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterStringInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterKeyValueInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterArrayInput']);
+$tester->RegisterTest([JsonEmitterTest::class, 'testJsonEmitterNestedObjectInput']);
+
+// yaml emitter tests
+$tester->RegisterTest([YamlEmitterTest::class, 'testSingleString']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testSingleBool']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testSingleNum']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testSimpleArray']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testEmptyArray']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures1']);
+$tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures2']);
+
+// toml emitter tests
+$tester->RegisterTest([TomlEmitterTest::class, 'testNonObjectRoot']);
+$tester->RegisterTest([TomlEmitterTest::class, 'testSimpleTable']);
+$tester->RegisterTest([TomlEmitterTest::class, 'testComplexTable']);
 
 $tester->RunTests();
 
