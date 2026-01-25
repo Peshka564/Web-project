@@ -17,3 +17,8 @@ docker cp php_web:/etc/apache2/sites-available/000-default.conf ./config/apache.
 ```bash
 php test/index.php
 ```
+
+## DB setup
+1. Start container - `docker compose up`
+2. Go into the MariaDB container - `docker exec -it mariadb_container mariadb -u admin -padmin demo`
+3. Create the tables - `SOURCE /schema/schema.sql`

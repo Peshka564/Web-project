@@ -8,50 +8,34 @@
 <body>
     <?php
         require_once __DIR__ . '/../autoload.php';
-       
-        $user = "admin";
-        $pass = "admin";
-        $options = [
-                // throws exception of error
-                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-                // return map or assositive array which basicly map
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ];
+        use db\DBClient;
+        use db\models\User;
+        use db\repository\UserRepository;
 
-        try {
-            $pdo = new PDO("mysql:host=db;dbname=demo", $user, $pass, $options);
-            $stmt = $pdo->query("SELECT * FROM demo_table");
-            echo "
-                <table style=\"margin: auto;\">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>fullname</th>
-                        </tr>
-                    </thead>
-                    <tbody>";
+        $dbClient = new DBClient();
+        $repo = new UserRepository($dbClient);
 
-            foreach ($stmt as $row) {
-                $id = $row["id"];
-                $fullname = $row["fullname"];
-                echo "
-                        <tr>
-                            <td>$id</td>
-                            <td>$fullname</td>
-                        </tr>
-                ";
-            }
+        // Create User
+        $user = $repo->create(new User('pesho@gmail.com', '12345'));
+        echo $user->id;
 
-            echo "
-                    </tbody>
-                </table>
-            ";         
+        // Get All Users
+        $users = $repo->findAll();
 
-        } catch (Exception $e) {
-            echo "Something have gone wrong -> " . $e->getMessage();
+        // Get User by id
+        $user = $repo->findById(1);
+        if($user) {
+            echo $user->email;
         }
-      
-        phpinfo();
+
+        // Update User
+        $new_user = $user;
+        $new_user->email = 'pesho_new@gmail.com';
+        $new_user = $repo->update($user->id, $new_user);
+        echo $new_user->email;
+
+        // Delete User
+        $repo->delete($new_user->id);
     ?>
 </body>
 </html>
