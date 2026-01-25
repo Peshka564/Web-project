@@ -21,7 +21,7 @@ class SetvalFunction implements TransformerFunction
     public function eval(array $args, ASTNode $node, TransformerContext $ctx): ASTNode
     {
         if (count($args) !== 3) {
-            throw new EvaluationException("Keyval function needs 2 arguments(the first must be object and second must be string)");
+            throw new EvaluationException("Setval function needs 3 arguments(the first must be object and second must be string)");
         }
 
         /**
@@ -39,6 +39,7 @@ class SetvalFunction implements TransformerFunction
         if ($keyNode->getType() !== ASTNodeType::String) {
             throw new EvaluationException("Setval function needs string as second argument");
         }
+        $valueNode = Evaluator::eval($args[2], $node, $ctx);
 
         $searchedKeyValue = substr($keyNode->getToken()->getLiteral(), 1, -1);
         $pairs = $objectNode->getChildren();
@@ -49,7 +50,6 @@ class SetvalFunction implements TransformerFunction
             $childKeyNode = $pair->getKeyNode();
             $childKeyValue = substr($childKeyNode->getToken()->getLiteral(), 1, -1);
             if ($childKeyValue === $searchedKeyValue) {
-                $valueNode = Evaluator::eval($args[2], $node, $ctx);
                 $result[] = new KeyValueNode($childKeyNode, $valueNode);
                 $found = true;
             } else {
@@ -58,7 +58,7 @@ class SetvalFunction implements TransformerFunction
         }
         
         if (!$found) {
-            throw new EvaluationException("Setval key not found");
+            $result[] = new KeyValueNode($keyNode, $valueNode);
         }
         return new ObjectNode($result);
     }
