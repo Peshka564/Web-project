@@ -11,9 +11,9 @@ class UserRepository extends BaseRepository {
     protected string $table = 'users';
     protected string $modelClass = User::class;
     
-    public function findByEmail(string $email): ?User {
-        $stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email");
-        $successful = $stmt->execute(['email' => $email]);
+    public function findByUsername(string $username): ?User {
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE username = :username");
+        $successful = $stmt->execute(['username' => $username]);
         if(!$successful) {
             throw new Exception('Failed to find');
         }
