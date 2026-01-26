@@ -4,8 +4,8 @@
       "host": "db",
       "port": 3306,
       "dbName": "demo",
-      "user": "user",
-      "password": "pass"
+      "user": "admin",
+      "password": "admin"
     }
   },
   "json-parser": {
@@ -15,20 +15,20 @@
   },
   "emitters": {
     "json-emitter": {
-      "indentationString": "json-iden-str",
-      "newLineString": "json-line-str"
+      "indentationString": "\t",
+      "newLineString": "\n"
     },
     "yaml-emitter": {
-      "indentationString": "yaml-iden-str",
-      "newLineString": "yaml-line-str"
+      "indentationString": "\t",
+      "newLineString": "\n"
     },
     "toml-emitter": {
-      "indentationString": "toml-iden-str",
-      "newLineString": "toml-line-str"
+      "indentationString": "\t",
+      "newLineString": "\n"
     }
   },
   "transformer": {
-    "stdlib": "stdlib",
-    "plugins": "plugins"
+    "stdlib": "/../lib/Transformer/std",
+    "plugins": "/../plugins"
   }
 }
