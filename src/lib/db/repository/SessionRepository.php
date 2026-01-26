@@ -2,7 +2,9 @@
 
 namespace db\repository;
 
+use DateTime;
 use db\models\Session;
+use db\models\User;
 use db\repository\BaseRepository;
 use Exception;
 use PDO;
@@ -21,4 +23,22 @@ class SessionRepository extends BaseRepository {
         return $stmt->fetch() ?: null;
     }
     
+    public function createSessionForUser(User $user): Session {
+        $token = bin2hex(random_bytes(32));
+        $userId = $user->id;
+        $expires_at = new DateTime()->modify('+2 days');
+        $expires_at = $expires_at->format('Y-m-d H:i:s');
+        $newSession = new Session($userId, $token, $expires_at);
+
+        $newSession = $this->create($newSession);
+        return $newSession;
+    }
+
+    public function deleteSessionForUser(string $session_token) {
+        $userSession = $this->findByToken($session_token);
+        if(!$userSession) {
+            throw new Exception('Invalid user token');
+        }
+        $this->delete($userSession->id);
+    }
 }
