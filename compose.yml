@@ -1,6 +1,6 @@
 services:
-  web:
-    image: php:8.5-apache
+  web:  
+    build: ./docker/web
     container_name: php_web
     ports:
       - "8080:80"
@@ -10,4 +10,22 @@ services:
       - ./src/autoload.php:/var/www/autoload.php
       - ./config/php.ini:/usr/local/etc/php/php.ini
       - ./config/apache.conf:/etc/apache2/sites-available/000-default.conf
+      - ./config/app.json:/var/wwww/app.json
     restart: always
+  db:
+    image: mariadb:lts
+    container_name: mariadb_container
+    restart: always
+    environment:
+      # change them
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./schema:/schema
+volumes:
+  db_data:

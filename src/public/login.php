@@ -1,3 +1,73 @@
+<?php
+require_once __DIR__ . '/../autoload.php';
+use db\repository\SessionRepository;
+use db\repository\UserRepository;
+use db\DBClient;
+use services\AuthService;
+use utility\FormErrors;
+
+session_start();
+$db = new DBClient();
+$sessions = new SessionRepository($db);
+$users = new UserRepository($db);
+$auth = new AuthService($sessions, $users);
+
+$auth->logoutUser();
+
+$loginUsername = '';
+$loginPassword = '';
+$loginErrors = new FormErrors();
+
+$registerUsername = '';
+$registerPassword = '';
+$registerConfirmPassword = '';
+$registerErrors = new FormErrors();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $passwordConfirmation = $_POST['password-confirmation'] ?? '';
+
+    // Login logic
+    if (isset($_POST['action']) && $_POST['action'] === 'login') {
+        $loginErrors = $auth->validateLoginInfo($username, $password);
+        if(!$loginErrors->hasErrors) {
+            $auth->loginUser();
+            header('Location: converter.php');
+            exit;
+        }
+        $loginUsername = $username;
+        $loginPassword = $password;
+    }
+
+    // Register logic
+    if (isset($_POST['action']) && $_POST['action'] === 'register') {
+        $registerErrors = $auth->validateRegisterInfo($username, $password, $passwordConfirmation);
+        if(!$registerErrors->hasErrors) {
+            $auth->registerUser($username, $password);
+            header('Location: converter.php');
+            exit;
+        }
+        $registerUsername = $username;
+        $registerPassword = $password;
+        $registerConfirmPassword = $password;
+    }
+}
+?>
+
+<?php if ($registerErrors->hasErrors): ?>
+<script>
+    // We want to keep the register modal open if we have errors
+    // But PHP reloads the whole page so we need to automatically open the modal
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('register-modal');
+        if (modal) {
+            modal.showModal();
+        }
+    });
+</script>
+<?php endif; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,18 +80,18 @@
     <main class="login-container">
         <section class="login-card">
             <h1>JSON Converter</h1>
-            <form class="login-form" id="login-form">
+            <form method="post" class="login-form" id="login-form">
                 <div class="login-form-container">
                     <label for="username">Username</label>
-                    <input type="text" id="login-username" placeholder="Enter Username" name="username">
-                    <p class="error" id="login-username-error"></p>
+                    <input type="text" id="login-username" placeholder="Enter Username" name="username" value="<?php echo htmlspecialchars($loginUsername)?>">
+                    <p class="error" id="login-username-error"><?php echo $loginErrors->username ?></p>
                 </div>
                 <div class="login-form-container">
                     <label for="password">Password</label>
-                    <input type="password" id="login-password" placeholder="Enter Password" name="password">
-                    <p class="error" id="login-password-error"></p>
+                    <input type="password" id="login-password" placeholder="Enter Password" name="password" value="<?php echo htmlspecialchars($loginPassword)?>">
+                    <p class="error" id="login-password-error"><?php echo $loginErrors->password ?></p>
                 </div>
-                <button type="submit" class="login-button">Login</button>
+                <button type="submit" class="login-button" value="login" name="action">Login</button>
             </form>
             <p class="register-link">Don't have an account? <a href="#" id="register-link">Register</a></p>
         </section>
@@ -31,23 +101,23 @@
         <div class="modal-content">
             <button class="modal-close" id="close-register">&times;</button>
             <h2>Register</h2>
-            <form class="register-form" id="register-form">
+            <form method="post" class="register-form" id="register-form">
                 <div class="register-form-container">
                     <label for="register-username">Username</label>
-                    <input type="text" id="register-username" name="username" placeholder="Username">
-                    <p class="error" id="register-username-error"></p>
+                    <input type="text" id="register-username" name="username" placeholder="Enter Username" value="<?php echo htmlspecialchars($registerUsername)?>">
+                    <p class="error" id="register-username-error"><?php echo $registerErrors->username ?></p>
                 </div>
                 <div class="register-form-container">
                     <label for="register-password">Password</label>
-                    <input type="password" id="register-password" name="password">
-                    <p class="error" id="register-password-error"></p>
+                    <input type="password" id="register-password" name="password" placeholder="Enter Password" value="<?php echo htmlspecialchars($registerPassword)?>">
+                    <p class="error" id="register-password-error"><?php echo $registerErrors->password ?></p>
                 </div>
                 <div class="register-form-container">
                     <label for="register-password-confirmation">Confirm password</label>
-                    <input type="password" id="register-password-confirmation" name="password-confirmation">
-                    <p class="error" id="register-password-confirmation-error"></p>
+                    <input type="password" id="register-password-confirmation" name="password-confirmation" placeholder="Enter Password" value="<?php echo htmlspecialchars($registerConfirmPassword)?>">
+                    <p class="error" id="register-password-confirmation-error"><?php echo $registerErrors->passwordConfirmation ?></p>
                 </div>
-                <button type="submit" class="register-button">Register</button>
+                <button type="submit" class="register-button" value="register" name="action">Register</button>
             </form>
         </div>
     </dialog>
