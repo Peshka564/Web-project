@@ -6,20 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        require_once __DIR__ . '/../autoload.php';
-        use Greeter\Greeter;
-        use Foo\Bar\Baz;
-
-        $greeter = new Greeter();
-        $baz = new Baz();
-
-
-        echo $greeter->hello();
-        echo "<br>";
-        echo $baz->hello();
-
-        phpinfo();
-    ?>
+    TODO: Delete me
 </body>
 </html>

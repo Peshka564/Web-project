@@ -1,3 +1,20 @@
+<?php
+require_once __DIR__ . '/../autoload.php';
+use db\repository\SessionRepository;
+use db\repository\UserRepository;
+use db\DBClient;
+use services\AuthService;
+
+session_start();
+
+$db = new DBClient();
+$sessions = new SessionRepository($db);
+$users = new UserRepository($db);
+$auth = new AuthService($sessions, $users);
+
+$auth->guard();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +26,8 @@
     <body class="flex-body">
         <nav class="sidebar">
             <div class="avatar-placeholder"><img src="img/avatar.png" class="avatar"></div> 
-            <a href="history.html" class="nav-item">History</a>
-            <a href="login.html" class="nav-item">Logout</a>
+            <a href="history.php" class="nav-item">History</a>
+            <a href="login.php" class="nav-item">Logout</a>
         </nav>
 
         <main class="main-content">
