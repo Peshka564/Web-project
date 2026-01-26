@@ -11,8 +11,8 @@ class ParserError
 
     public function __construct(string $msg, Token | null $token = null) 
     {
-        $this->msg;
-
+        $this->msg = $msg;
+        $this->token = $token;
     }
 
     public function hasToken(): bool {
