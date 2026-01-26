@@ -1,0 +1,34 @@
+{
+  "db": {
+    "client": {
+      "host": "db",
+      "port": 3306,
+      "dbName": "demo",
+      "user": "user",
+      "password": "pass"
+    }
+  },
+  "json-parser": {
+    "lexer": {
+      "tabColms": 4
+    }
+  },
+  "emitters": {
+    "json-emitter": {
+      "indentationString": "json-iden-str",
+      "newLineString": "json-line-str"
+    },
+    "yaml-emitter": {
+      "indentationString": "yaml-iden-str",
+      "newLineString": "yaml-line-str"
+    },
+    "toml-emitter": {
+      "indentationString": "toml-iden-str",
+      "newLineString": "toml-line-str"
+    }
+  },
+  "transformer": {
+    "stdlib": "stdlib",
+    "plugins": "plugins"
+  }
+}
