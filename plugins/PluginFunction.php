@@ -11,7 +11,6 @@ class PluginFunction implements TransformerFunction {
     }
 
     public function eval(array $args, ASTNode $node, TransformerContext $ctx): ASTNode {
-        echo "another success";
         return $node;
     }
 }
