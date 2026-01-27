@@ -7,6 +7,9 @@ use JsonParser\ParserTest;
 use Emitters\JsonEmitterTest;
 use Emitters\YamlEmitterTest;
 use Emitters\TomlEmitterTest;
+use Transformer\TransformerEmitterTest;
+use Transformer\TransformerParserTest;
+
 
 $tester = new Tester();
 
@@ -76,10 +79,18 @@ $tester->RegisterTest([YamlEmitterTest::class, 'testEmptyArray']);
 $tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures1']);
 $tester->RegisterTest([YamlEmitterTest::class, 'testNestedStructures2']);
 
+
 // toml emitter tests
 $tester->RegisterTest([TomlEmitterTest::class, 'testNonObjectRoot']);
 $tester->RegisterTest([TomlEmitterTest::class, 'testSimpleTable']);
 $tester->RegisterTest([TomlEmitterTest::class, 'testComplexTable']);
+
+// transformer
+$tester->RegisterTest([TransformerParserTest::class, 'testParserEmitter']);
+$tester->RegisterTest([TransformerParserTest::class, 'testParserFunctionName']);
+$tester->RegisterTest([TransformerParserTest::class, 'testParserArguments']);
+$tester->RegisterTest([TransformerParserTest::class, 'testParserArgumentsRecursive']);
+$tester->RegisterTest([TransformerEmitterTest::class, 'testEmitter']);
 
 $tester->RunTests();
 

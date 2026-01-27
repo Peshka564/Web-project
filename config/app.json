@@ -15,20 +15,20 @@
   },
   "emitters": {
     "json-emitter": {
-      "indentationString": "\t",
+      "indentationString": "  ",
       "newLineString": "\n"
     },
     "yaml-emitter": {
-      "indentationString": "\t",
+      "indentationString": "  ",
       "newLineString": "\n"
     },
     "toml-emitter": {
-      "indentationString": "\t",
+      "indentationString": "  ",
       "newLineString": "\n"
     }
   },
   "transformer": {
-    "stdlib": "/../lib/Transformer/std",
-    "plugins": "/../plugins"
+    "stdlib": "/var/www/lib/Transformer/std",
+    "plugins": "/var/www/plugins"
   }
 }

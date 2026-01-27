@@ -17,14 +17,14 @@ class History extends BaseModel {
         ?string $description = null,
         string $input_data_path = '',
         ?string $s_expression_path = null,
-        string $executed_at = ''
+        // string $executed_at = ''
     ) {
         $this->user_id = $user_id;
         $this->name = $name;
         $this->description = $description;
         $this->input_data_path = $input_data_path;
         $this->s_expression_path = $s_expression_path;
-        $this->executed_at = $executed_at;
+        // $this->executed_at = $executed_at;
     }
 
     public function getColumnValues(): array {
@@ -34,7 +34,7 @@ class History extends BaseModel {
             'description' => $this->description,
             'input_data_path' => $this->input_data_path,
             's_expression_path' => $this->s_expression_path,
-            'executed_at' => $this->executed_at,
+            // 'executed_at' => $this->executed_at,
         ];
     }
 }

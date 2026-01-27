@@ -228,7 +228,7 @@ class Lexer
             $currChar = $this->input[$this->ind++];
         }
 
-        if (self::isEOF() || !self::isDigit($currChar)) {
+        if (self::isEOF() && $literal === "-"  || !self::isDigit($currChar)) {
             $this->ind = $originalInd;
             return null;
         }

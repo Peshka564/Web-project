@@ -33,7 +33,7 @@ class JsonEmitter implements Emitter
             return $this->emitObjectNode($node, $indentationLevel);
         case ASTNodeType::Array:
             return $this->emitArrayNode($node, $indentationLevel);
-        case ASTNodeType::KeyValue;
+        case ASTNodeType::KeyValue:
             return $this->emitValueNode($node, $indentationLevel);
         case ASTNodeType::String:
             return $node->getToken()->getLiteral();
