@@ -152,19 +152,12 @@ class TomlEmitter implements Emitter
         return $tableHeader . $tableBody;
     }
 
-    public function emit(ASTNode $root): string | null
+    public function emit(ASTNode $root): string
     {
-        try {
-            if ($root->getType() !== ASTNodeType::Object) {
-                throw new Exception("TOML root must be an object", 1);
-            }
-            // indentationLevel -1 because the we don't indent the subtables of the root table
-            return $this->emitObject($root, null, "", -1);
-        } catch (Exception $e) {
-            if ($e->getCode() === 1) {
-                return null;
-            }
-            throw $e;
+        if ($root->getType() !== ASTNodeType::Object) {
+            throw new Exception("TOML root must be an object", 1);
         }
+        // indentationLevel -1 because the we don't indent the subtables of the root table
+        return $this->emitObject($root, null, "", -1);
     }
 }

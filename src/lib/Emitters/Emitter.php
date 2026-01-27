@@ -6,5 +6,5 @@ use JsonParser\AST\ASTNode;
 
 interface Emitter
 {
-    public function emit(ASTNode $root): string | null;
+    public function emit(ASTNode $root): string;
 }

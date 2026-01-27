@@ -12,6 +12,7 @@ use Emitters\TomlEmitter\TomlEmitter;
 use Emitters\TomlEmitter\TomlEmitterConfig;
 use Emitters\YamlEmitter\YamlEmitter;
 use Emitters\YamlEmitter\YamlEmitterConfig;
+use Exception;
 use JsonParser\Lexer\Lexer;
 use JsonParser\Parser\Parser;
 use Transformer\Evaluator\EvaluationException;
@@ -155,7 +156,7 @@ class ConverterPageModel
                             EMITTERS_TOML_EMITTERS_INDENTATION_STRING,
                             EMITTERS_TOML_EMITTERS_NEWLINE_STRING
                         );
-                        return new TomlEmitter($opt)->emit($transformedNode) ?? "";
+                        return new TomlEmitter($opt)->emit($transformedNode);
                     default:
                         return "Unsupported output language";
                 }
@@ -163,6 +164,8 @@ class ConverterPageModel
         } catch (FailedClassLoadingException $e) {
             return $e->getMessage();
         } catch (EvaluationException $e) {
+            return $e->getMessage();
+        } catch(Exception $e) {
             return $e->getMessage();
         }
     }

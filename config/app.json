@@ -15,15 +15,15 @@
   },
   "emitters": {
     "json-emitter": {
-      "indentationString": "\t",
+      "indentationString": "  ",
       "newLineString": "\n"
     },
     "yaml-emitter": {
-      "indentationString": "\t",
+      "indentationString": "  ",
       "newLineString": "\n"
     },
     "toml-emitter": {
-      "indentationString": "\t",
+      "indentationString": "  ",
       "newLineString": "\n"
     }
   },
