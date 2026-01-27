@@ -7,12 +7,6 @@ use services\AuthService;
 use utility\FormErrors;
 
 session_start();
-$db = new DBClient();
-$sessions = new SessionRepository($db);
-$users = new UserRepository($db);
-$auth = new AuthService($sessions, $users);
-
-$auth->logoutUser();
 
 $loginUsername = '';
 $loginPassword = '';
@@ -24,6 +18,12 @@ $registerConfirmPassword = '';
 $registerErrors = new FormErrors();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $db = new DBClient();
+    $sessions = new SessionRepository($db);
+    $users = new UserRepository($db);
+    $auth = new AuthService($sessions, $users);
+
+
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $passwordConfirmation = $_POST['password-confirmation'] ?? '';
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $registerUsername = $username;
         $registerPassword = $password;
-        $registerConfirmPassword = $password;
+        $registerConfirmPassword = $passwordConfirmation;
     }
 }
 ?>

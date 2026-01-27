@@ -61,7 +61,7 @@ $baseQuery = buildQueryString(['sort' => $currentSort, 'search' => $currentFilte
     <nav class="sidebar">
         <div class="avatar-placeholder"><img src="img/avatar.png" class="avatar"></div>
         <a href="converter.php" class="nav-item">Converter</a>
-        <a href="login.php" class="nav-item">Logout</a>
+        <a href="logout.php" class="nav-item">Logout</a>
     </nav>
 
     <main class="main-content">
