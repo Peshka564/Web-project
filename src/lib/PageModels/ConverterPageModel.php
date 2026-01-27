@@ -144,19 +144,19 @@ class ConverterPageModel
                             EMITTERS_JSON_EMITTERS_INDENTATION_STRING,
                             EMITTERS_JSON_EMITTERS_NEWLINE_STRING
                         );
-                        return new JsonEmitter($opt)->emit($transformedNode);
+                        return (new JsonEmitter($opt))->emit($transformedNode);
                     case "YAML":
                         $opt = new YamlEmitterConfig(
                             EMITTERS_YAML_EMITTERS_INDENTATION_STRING,
                             EMITTERS_YAML_EMITTERS_NEWLINE_STRING
                         );
-                        return new YamlEmitter($opt)->emit($transformedNode);
+                        return (new YamlEmitter($opt))->emit($transformedNode);
                     case "TOML":
                         $opt = new TomlEmitterConfig(
                             EMITTERS_TOML_EMITTERS_INDENTATION_STRING,
                             EMITTERS_TOML_EMITTERS_NEWLINE_STRING
                         );
-                        return new TomlEmitter($opt)->emit($transformedNode);
+                        return (new TomlEmitter($opt))->emit($transformedNode);
                     default:
                         return "Unsupported output language";
                 }

@@ -21,7 +21,7 @@ class Evaluator
         }
         $subNode = null;
         try {
-            $subNode = new Emitter()->emit($parser->getEmitter(), $node);
+            $subNode = (new Emitter())->emit($parser->getEmitter(), $node);
         } catch (InvalidEmitterStateException | InvalidEmitterSyntaxException $th) {
             throw new EvaluationException("error while traversing the AST");
         }
