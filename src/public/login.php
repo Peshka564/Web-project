@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../autoload.php';
+require_once __DIR__ . '/../config.php';
+
 use db\repository\SessionRepository;
 use db\repository\UserRepository;
 use db\DBClient;
