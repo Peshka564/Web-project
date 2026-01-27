@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $loginErrors = $auth->validateLoginInfo($username, $password);
         if(!$loginErrors->hasErrors) {
             $auth->loginUser();
-            header('Location: converter.php');
+            header('Location: index.php');
             exit;
         }
         $loginUsername = $username;
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $registerErrors = $auth->validateRegisterInfo($username, $password, $passwordConfirmation);
         if(!$registerErrors->hasErrors) {
             $auth->registerUser($username, $password);
-            header('Location: converter.php');
+            header('Location: index.php');
             exit;
         }
         $registerUsername = $username;

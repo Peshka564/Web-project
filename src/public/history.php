@@ -60,7 +60,7 @@ $baseQuery = buildQueryString(['sort' => $currentSort, 'search' => $currentFilte
 <body class="flex-body">
     <nav class="sidebar">
         <div class="avatar-placeholder"><img src="img/avatar.png" class="avatar"></div>
-        <a href="converter.php" class="nav-item">Converter</a>
+        <a href="index.php" class="nav-item">Converter</a>
         <a href="logout.php" class="nav-item">Logout</a>
     </nav>
 
@@ -109,7 +109,7 @@ $baseQuery = buildQueryString(['sort' => $currentSort, 'search' => $currentFilte
                 <?php foreach ($itemsToShow as $item): ?>
                     <article class="history-item">
                         <header class="history-item-header">
-                            <a href="converter.php?id=<?php echo urlencode($item->id) ?>" class="history-item-name">
+                            <a href="index.php?id=<?php echo urlencode($item->id) ?>" class="history-item-name">
                                 <p><?php echo htmlspecialchars($item->name); ?></p>
                             </a>
                             <time class="history-item-date"><?php echo formatDate($item->updated_at); ?></time>
