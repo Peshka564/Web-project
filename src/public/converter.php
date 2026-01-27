@@ -27,7 +27,7 @@ $auth->guard();
         <nav class="sidebar">
             <div class="avatar-placeholder"><img src="img/avatar.png" class="avatar"></div> 
             <a href="history.php" class="nav-item">History</a>
-            <a href="login.php" class="nav-item">Logout</a>
+            <a href="logout.php" class="nav-item">Logout</a>
         </nav>
 
         <main class="main-content">
