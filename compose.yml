@@ -17,7 +17,7 @@ services:
     restart: always
     environment:
       # change them
-      MYSQL_DATABASE: demo
+      MYSQL_DATABASE: json_converter
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin

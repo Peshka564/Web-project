@@ -3,7 +3,7 @@
     "client": {
       "host": "db",
       "port": 3306,
-      "dbName": "demo",
+      "dbName": "json_converter",
       "user": "admin",
       "password": "admin"
     }

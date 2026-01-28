@@ -20,5 +20,5 @@ php test/index.php
 
 ## DB setup
 1. Start container - `docker compose up`
-2. Go into the MariaDB container - `docker exec -it mariadb_container mariadb -u admin -padmin demo`
+2. Go into the MariaDB container - `docker exec -it mariadb_container mariadb -u admin -padmin json_converter`
 3. Create the tables - `SOURCE /schema/schema.sql`
