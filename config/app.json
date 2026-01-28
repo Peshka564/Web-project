@@ -28,7 +28,7 @@
     }
   },
   "transformer": {
-    "stdlib": "/var/www/html/app/lib/Transformer/std",
+    "stdlib": "/var/www/html/lib/Transformer/std",
     "plugins": "/var/www/plugins"
   }
 }
