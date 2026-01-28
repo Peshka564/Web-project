@@ -5,14 +5,11 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./src/public:/var/www/html
-      - ./src/lib:/var/www/lib
-      - ./src/autoload.php:/var/www/autoload.php
-      - ./src/config.php:/var/www/config.php
+      - ./src:/var/www/html
       - ./plugins:/var/www/plugins
       - ./config/php.ini:/usr/local/etc/php/php.ini
       - ./config/apache.conf:/etc/apache2/sites-available/000-default.conf
-      - ./config/app.json:/var/www/app.json
+      - ./config:/var/www/config
     restart: always
   db:
     image: mariadb:lts

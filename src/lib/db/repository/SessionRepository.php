@@ -26,7 +26,7 @@ class SessionRepository extends BaseRepository {
     public function createSessionForUser(User $user): Session {
         $token = bin2hex(random_bytes(32));
         $userId = $user->id;
-        $expires_at = new DateTime()->modify('+2 days');
+        $expires_at = (new DateTime())->modify('+2 days');
         $expires_at = $expires_at->format('Y-m-d H:i:s');
         $newSession = new Session($userId, $token, $expires_at);
 

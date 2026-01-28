@@ -5,11 +5,13 @@ namespace db;
 use PDO;
 use PDOException;
 
-class DBClient {
+class DBClient
+{
     public PDO $conn;
     private string $dbName;
-    
-    public function __construct(string $dbName = 'demo') {
+
+    public function __construct(string $host, int $port, string $dbName, string $user, string $pass)
+    {
         $this->dbName = $dbName;
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -17,9 +19,9 @@ class DBClient {
         ];
         try {
             $this->conn = new PDO(
-                "mysql:host=db;dbname={$dbName}",
-                "admin",
-                "admin",
+                "mysql:host={$host}:{$port};dbname={$dbName}",
+                $user,
+                $pass,
                 $options
             );
         } catch (PDOException $e) {

@@ -12,7 +12,7 @@ use services\AuthService;
 
 session_start();
 
-$db = new DBClient();
+$db = new DBClient(DB_CLIENT_HOST, DB_CLIENT_PORT, DB_CLIENT_DBNAME, DB_CLIENT_USER, DB_CLIENT_PASS);
 $history = new HistoryRepository($db);
 $sessions = new SessionRepository($db);
 $users = new UserRepository($db);

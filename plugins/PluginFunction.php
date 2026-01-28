@@ -17,6 +17,6 @@ class PluginFunction implements TransformerFunction
 
     public function eval(array $args, ASTNode $node, TransformerContext $ctx): ASTNode
     {
-        return new StringNode(new Token(TokenType::StringLiteral, "plugin function", 0, 0));
+        return new StringNode(new Token(TokenType::StringLiteral, "\"plugin function\"", 0, 0));
     }
 }
